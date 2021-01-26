@@ -1,0 +1,100 @@
+<div *ngIf="showSuccessAlert">
+    <div class="alert alert-success">
+        <strong>Success!</strong> Payment Successful
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Payment
+    </div>
+    <div class="card-body">
+        <form novalidate (ngSubmit)="save()" [formGroup]="paymentForm">
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="creditCardNumber">Credit Card Number</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="creditCardNumber" type="text"
+                        placeholder="Credit Card Number (required)" formControlName="creditCardNumber" [ngClass]="{'is-invalid': (paymentForm.get('creditCardNumber').touched ||
+                                                    paymentForm.get('creditCardNumber').dirty) &&
+                                                    !paymentForm.get('creditCardNumber').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="paymentForm.get('creditCardNumber').errors?.required">
+                            Please enter credit card number.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="cardHolder">Card Holder</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="cardHolder" type="text" placeholder="Card Holder (required)"
+                        formControlName="cardHolder" [ngClass]="{'is-invalid': (paymentForm.get('cardHolder').touched ||
+                                                    paymentForm.get('cardHolder').dirty) &&
+                                                    !paymentForm.get('cardHolder').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="paymentForm.get('cardHolder').errors?.required">
+                            Please enter card holder.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="expirationDate">Expiration Date</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="expirationDate" type="Date" placeholder="Expiration Date (required)"
+                        formControlName="expirationDate" [ngClass]="{'is-invalid': (paymentForm.get('expirationDate').touched ||
+                                                    paymentForm.get('expirationDate').dirty) &&
+                                                    !paymentForm.get('expirationDate').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="paymentForm.get('expirationDate').errors?.required">
+                            Please enter expiration date.
+                        </span>
+                        <span *ngIf="paymentForm.get('expirationDate').errors?.futureDate">
+                            Please enter future date.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="securityCode">Security Code</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="securityCode" type="text" placeholder="Security Code (optional)"
+                        formControlName="securityCode" [ngClass]="{'is-invalid': (paymentForm.get('securityCode').touched ||
+                                                    paymentForm.get('securityCode').dirty) &&
+                                                    !paymentForm.get('securityCode').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="paymentForm.get('securityCode').errors?.pattern">
+                            Please enter 3 digits
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="amount">Amount</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="amount" type="number" placeholder="Amount (required)"
+                        formControlName="amount" [ngClass]="{'is-invalid': (paymentForm.get('amount').touched ||
+                                                    paymentForm.get('amount').dirty) &&
+                                                    !paymentForm.get('amount').valid }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="paymentForm.get('amount').errors?.required">
+                            Please enter amount.
+                        </span>
+                        <span *ngIf="paymentForm.get('amount').errors?.min">
+                            Please enter amount greater than zero.
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3" type="submit" style="width:80px"
+                        [title]="paymentForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                        [disabled]="!paymentForm.valid">
+                        Pay
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

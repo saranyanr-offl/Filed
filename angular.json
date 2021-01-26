@@ -116,9 +116,16 @@
               "devServerTarget": "filed-assignment:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "filed-assignment"
+  "defaultProject": "filed-assignment",
+  "cli": {
+    "analytics": "292fe8f6-cef8-4166-9c29-b48f8c6b617c"
+  }
 }

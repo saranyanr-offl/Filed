@@ -1,0 +1,13 @@
+.alert
+{
+    position: absolute;
+    z-index: 5;
+    width: 50vw;
+    height: 50px;
+    margin: 0 auto;
+    display: inline-block;
+    top: 45px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
